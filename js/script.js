@@ -1,16 +1,39 @@
 $(document).ready(function() {
 
-	$('button').click(function() {
-		for(var i = 1; i <= 100; i++) {
-			if (i % 15 == 0) { 
-				$('body').append('fizzbuzz <br />');
-			} else if (i % 3 == 0) {
-				$('body').append('fizz <br />');
-			} else if (i % 5 == 0) {
-				$('body').append('buzz <br />');
+	$('button').click(function runFizzBuzz(int) {
+
+		int = parseFloat($('input').val());
+		
+		function validateUserInput() {
+			//make sure that user's choice is a valid number
+			if (int <= 0 || int % 1 != 0) {
+				return false 
 			} else {
-				$('body').append(i + '<br />');
+				return true;
 			}
 		};
+
+		/**Runs FizzBuzz IF userInput is valid; 
+		*otherwise tells user to enter valid number*/
+		if (validateUserInput() == true) {
+			for(var i = 1; i <= int; i++) {
+				if (i % 15 == 0) { 
+					$('body').append('FIZZBUZZ <br />');
+				} else if (i % 3 == 0) {
+					$('body').append('FIZZ <br />');
+				} else if (i % 5 == 0) {
+					$('body').append('BUZZ <br />');
+				} else {
+					$('body').append(i + '<br />');
+				}
+			};
+
+		} else {
+			alert('Please choose a valid number');
+		};
+
+		//Resets the user input value
+		$('input').val('');
 	});
+
 })
